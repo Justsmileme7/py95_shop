@@ -20,7 +20,7 @@ class Seller(models.Model):
     contact = models.CharField(max_length=500)
 
     def __str__(self):
-        return self.name, self.contact
+        return f'{self.name}, {self.contact}'
 
 
 class Discount(models.Model):
@@ -30,7 +30,7 @@ class Discount(models.Model):
     date_end = models.DateField()
 
     def __str__(self):
-        return self.percent, self.date_end, self.date_start
+        return f'{self.percent}, {self.date_end}, {self.date_start}'
 
 
 class Promocode(models.Model):
@@ -41,7 +41,7 @@ class Promocode(models.Model):
     is_cumulative = models.BooleanField()
 
     def __str__(self):
-        return self.name, self.percent
+        return f'{self.name}, {self.percent}'
 
 
 class Product(models.Model):
@@ -55,7 +55,7 @@ class Product(models.Model):
     seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name, self.article, self.price, self.discount, self.seller
+        return f'{self.name}, {self.article}, {self.price}, {self.discount}, {self.seller}'
 
 
 class ProductImage(models.Model):
@@ -63,7 +63,7 @@ class ProductImage(models.Model):
     image = models.ImageField(upload_to='product_images/')
 
     def __str__(self):
-        return self.image
+        return f'{self.image}'
 
 class Cart():
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -122,4 +122,3 @@ class OrderProducts(models.Model):
 class Cashback(models.Model):
     percent = models.PositiveIntegerField()
     treshold = models.PositiveIntegerField()
-
